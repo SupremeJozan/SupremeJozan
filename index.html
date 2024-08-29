@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Special Calculator</h1>
+    <div>
+        <label for="max_value">Enter maximum value:</label><br>
+        <input type="number" id="max_value" required>
+    </div>
+    <div>
+        <label for="current_value">Enter current value:</label><br>
+        <input type="number" id="current_value" required>
+    </div>
+    <button onclick="calculate()">Calculate</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        function calculate() {
+            const maxValue = parseInt(document.getElementById('max_value').value);
+            const currentValue = parseInt(document.getElementById('current_value').value);
+
+            if (isNaN(maxValue) || isNaN(currentValue)) {
+                document.getElementById('result').innerText = "Error: Enter valid numbers";
+            } else {
+                // Correct division by 5
+                const result = (maxValue - currentValue) / 5;
+                document.getElementById('result').innerText = "Result: " + result;
+            }
+
+            // Clear input fields after calculation
+            document.getElementById('max_value').value = '';
+            document.getElementById('current_value').value = '';
+        }
+
+        // Bind Enter key to the calculate function
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                calculate();
+            }
+        });
+    </script>
+</body>
+</html>
